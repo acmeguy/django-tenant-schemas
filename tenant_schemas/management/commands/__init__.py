@@ -44,7 +44,6 @@ class BaseTenantCommand(BaseCommand):
         verbosity = int(options.get('verbosity'))
 
         if verbosity >= 1:
-            print
             print self.style.NOTICE("=== Switching to schema '")\
                   + self.style.SQL_TABLE(tenant.schema_name)\
             + self.style.NOTICE("' then calling %s:" % command_name)
