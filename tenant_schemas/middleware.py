@@ -89,4 +89,9 @@ class TenantMiddleware(object):
 
     def get_tenant(self, host):
         hostname_without_port = remove_www_and_dev(host.split(':')[0])
-        return get_object_or_404(self.TenantModel, domain_url=hostname_without_port)
+        print hostname_without_port
+        try:
+            return self.TenantModel.objects.get(domain_url=hostname_without_port)
+        except Exception as e:
+            return self.TenantModel.objects.get(pk=1)
+        #return get_object_or_404(self.TenantModel, domain_url=hostname_without_port)
